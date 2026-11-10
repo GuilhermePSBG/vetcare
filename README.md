@@ -42,7 +42,9 @@ python -m vetcare.dados_exemplo
 python -m vetcare
 ```
 
-Acesse **http://127.0.0.1:8000**. Para mudar porta/host: `python -m vetcare --host 0.0.0.0 --port 8080`.
+Acesse **http://127.0.0.1:8000**.
+
+**Atalho no Windows:** dê dois cliques em `iniciar.bat`. Na primeira vez ele procura o Python (e tenta instalá-lo pelo winget se não houver), cria o ambiente, instala as dependências e carrega os dados de demonstração; depois disso só sobe o servidor e abre o navegador. A primeira execução precisa de internet. Para voltar aos dados iniciais, feche o sistema e rode `resetar_dados.bat`. Para mudar porta/host: `python -m vetcare --host 0.0.0.0 --port 8080`.
 
 ### Usuários
 
