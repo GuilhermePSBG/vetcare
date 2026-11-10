@@ -2,7 +2,7 @@
 
 Implementa a comunicação por eventos prevista na ADR-002: módulos publicam
 fatos de domínio (ex.: ConsultaAgendada) sem conhecer quem os consome.
-Os consumidores (Auditoria hoje; Comunicação e Gerencial nas próximas sprints)
+Os consumidores (Auditoria hoje; Comunicação e Gerencial na etapa final)
 se inscrevem no ponto de composição da aplicação (vetcare/app.py).
 """
 from __future__ import annotations

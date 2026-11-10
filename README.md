@@ -1,10 +1,10 @@
 # VetCare — Sistema de Gestão para Clínica Veterinária
 
 Trabalho II (Etapa 2) de Engenharia de Software 1 — UFBA.
-Primeira sprint de implementação do VetCare, seguindo a arquitetura definida na Etapa 1:
+Etapa 2: primeira etapa de implementação do VetCare, seguindo a arquitetura definida na Etapa 1:
 **monolito modular com arquitetura hexagonal (portas e adaptadores) em cada módulo**.
 
-## Requisitos implementados nesta sprint (6 de 17 ≈ 35%)
+## Requisitos implementados nesta etapa (6 de 17 ≈ 35%)
 
 | REQ | Nome | Prioridade | Módulo |
 |---|---|---|---|
@@ -151,7 +151,7 @@ curl -s -X POST localhost:8000/api/consultas -H "Authorization: Bearer $TOKEN" -
 - **Login:** mensagem genérica para e-mail ou senha errados; 5 erros bloqueiam a conta por 15 minutos; usuário desativado perde o acesso imediatamente, mesmo com token válido.
 - **Consulta:** só no futuro, seg a sáb das 8h às 18h, na grade de 30 min; sem sobreposição para o mesmo veterinário nem para o mesmo animal; o índice único no banco barra dupla marcação mesmo com requisições simultâneas.
 
-## Próximas sprints
+## Etapa final
 
 REQ 03 (recuperar senha), 08 (cancelar consulta), 09 (agenda por semana/profissional), 10–13
 (atendimento, prontuário, vacinação, prescrição), 14–15 (pagamento, dashboard), 16 (notificações

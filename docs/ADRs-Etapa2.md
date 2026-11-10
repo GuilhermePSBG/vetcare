@@ -6,7 +6,7 @@ exceto nos pontos alterados abaixo. A numeração continua a partir da ADR-010.
 | ADR | Título | Relação com a Etapa 1 | Status |
 |---|---|---|---|
 | ADR-010 | Linguagem e framework: Python 3 + Starlette + Uvicorn | Complementa ADR-002 (a Etapa 1 não fixou linguagem) | Aceita |
-| ADR-011 | SQLite nesta sprint, PostgreSQL mantido como alvo de produção | **Desvio** parcial da ADR-004 | Aceita |
+| ADR-011 | SQLite nesta etapa, PostgreSQL mantido como alvo de produção | **Desvio** parcial da ADR-004 | Aceita |
 | ADR-012 | Hash de senha com scrypt | **Desvio** da tática "Argon2 ou bcrypt" (ADR-003) | Aceita |
 | ADR-013 | Barramento de eventos síncrono; tabela Outbox adiada para o REQ 16 | **Desvio** de cronograma da ADR-007 | Aceita |
 | ADR-014 | Cache da agenda do dia adiado | **Desvio** parcial da ADR-009 | Aceita |
@@ -30,23 +30,23 @@ de modo que os módulos não importam o framework.
 **Alternativas.**
 - *Django*: produtivo, mas impõe ORM e organização em camadas globais (models/views), o que
   conflita com a hexagonal por módulo e com o "domínio isolado de frameworks".
-- *FastAPI*: boa opção; foi descartada nesta sprint para reduzir dependências (traz Pydantic como
+- *FastAPI*: boa opção; foi descartada nesta etapa para reduzir dependências (traz Pydantic como
   modelo central, que acabaria vazando para o domínio).
 - *SPA com React/Vue*: exigiria build com Node; para 6 telas o ganho não compensa.
 
 **Consequências.** Positivas: 3 dependências de execução, domínio 100% em Python puro,
 instalação com um `pip install`. Negativas: sem documentação OpenAPI automática (a tabela de
-endpoints fica no README; gerar OpenAPI fica para a próxima sprint); a SPA sem framework pede
+endpoints fica no README; gerar OpenAPI fica para a etapa final); a SPA sem framework pede
 disciplina para não crescer desorganizada.
 
-## ADR-011 — SQLite nesta sprint, PostgreSQL mantido como alvo de produção
+## ADR-011 — SQLite nesta etapa, PostgreSQL mantido como alvo de produção
 
 **Status:** Aceita — altera parcialmente a ADR-004
 
 **Contexto.** A ADR-004 escolheu PostgreSQL. Para a avaliação, o sistema precisa rodar sem que o
 avaliador instale e configure um servidor de banco.
 
-**Decisão.** Usar **SQLite** (biblioteca padrão do Python) nesta sprint, mantendo todas as
+**Decisão.** Usar **SQLite** (biblioteca padrão do Python) nesta etapa, mantendo todas as
 garantias de integridade que motivaram a ADR-004:
 transações ACID (`BEGIN IMMEDIATE`), chaves estrangeiras com `ON DELETE RESTRICT`, restrição
 única parcial `(veterinario_id, inicio) WHERE status='AGENDADA'` e trilha de auditoria protegida
@@ -85,14 +85,14 @@ já guarda os parâmetros para permitir isso.
 **Status:** Aceita — adia parte da ADR-007
 
 **Contexto.** A ADR-007 prevê Outbox para enviar notificações ao tutor com retentativa. Nesta
-sprint ainda não há notificações (REQ 16), e o único consumidor de eventos é a Auditoria (ADR-008).
+etapa ainda não há notificações (REQ 16), e o único consumidor de eventos é a Auditoria (ADR-008).
 
 **Decisão.** Implementar o barramento interno (`compartilhado/eventos.py`) com entrega síncrona
 dentro da mesma transação do fato de origem. Consumidores não derrubam quem publicou (falhas são
 registradas). A Agenda já publica `ConsultaAgendada`; quando o módulo Comunicação for criado, ele
 gravará esses eventos na tabela Outbox e um processo separado fará o envio, como na ADR-007.
 
-**Alternativas.** Criar a Outbox já agora, sem consumidor (código sem uso nesta sprint).
+**Alternativas.** Criar a Outbox já agora, sem consumidor (código sem uso nesta etapa).
 
 **Consequências.** Positivas: auditoria gravada atomicamente com a operação; nenhum código morto.
 Negativas: um consumidor lento atrasaria a operação — aceitável enquanto o único consumidor é
@@ -109,7 +109,7 @@ veterinários) e 300 tutores: listagem de um dia com 50 consultas em 1,4 ms (p95
 horários livres em 0,1 ms (p95), medidos na camada de aplicação, sem a rede. A meta da Etapa 1 é
 2 s para 95% das consultas.
 
-**Decisão.** Não implementar cache nesta sprint. Manter índices e paginação nas listagens.
+**Decisão.** Não implementar cache nesta etapa. Manter índices e paginação nas listagens.
 Reavaliar quando as visões por semana e por profissional (REQ 09) forem implementadas, medindo o
 tempo de resposta.
 

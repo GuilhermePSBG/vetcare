@@ -1,7 +1,7 @@
 """Interface pública do módulo Agenda.
 
-Nesta sprint nenhum outro módulo consome a Agenda diretamente: a integração
-acontece pelo evento `ConsultaAgendada`. Na próxima sprint, o módulo clínico
+Nesta etapa nenhum outro módulo consome a Agenda diretamente: a integração
+acontece pelo evento `ConsultaAgendada`. Na etapa final, o módulo clínico
 (Registrar Atendimento) usará esta porta para localizar a consulta.
 """
 from __future__ import annotations

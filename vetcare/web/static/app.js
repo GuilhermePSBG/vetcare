@@ -310,7 +310,7 @@ async function paginaAgenda(estado = { data: hojeISO(), vet: "" }) {
         <h2 style="margin-bottom:10px">Resumo do dia</h2>
         <div><span>Total de consultas</span><strong>${itens.length}</strong></div>
         ${Object.entries(porVet).map(([n, q]) => `<div><span class="sutil">${esc(n)}</span><span>${q}</span></div>`).join("")}
-        <p class="sutil pequeno" style="margin-top:14px">Visões por semana e por profissional (REQ 09) e cancelamento (REQ 08) entram na próxima sprint.</p>
+        <p class="sutil pequeno" style="margin-top:14px">Visões por semana e por profissional (REQ 09) e cancelamento (REQ 08) entram na etapa final.</p>
       </div>
     </div>`;
   const recarregar = (mud) => paginaAgenda({ ...estado, ...mud });

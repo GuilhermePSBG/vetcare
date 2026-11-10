@@ -101,7 +101,7 @@ class AgendamentoService:
 
     def do_dia(self, dia: date, veterinario_id: int | None = None) -> list[Consulta]:
         """Listagem simples do dia, usada para conferir o agendamento.
-        As visões por semana/profissional (REQ 09) ficam para a próxima sprint."""
+        As visões por semana/profissional (REQ 09) ficam para a etapa final."""
         return self._repo.no_periodo(*_dia(dia), veterinario_id)
 
     def horarios_livres(self, veterinario_id: int, dia: date) -> list[datetime]:

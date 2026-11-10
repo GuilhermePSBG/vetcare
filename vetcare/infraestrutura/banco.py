@@ -2,7 +2,7 @@
 
 Cada módulo é dono das próprias tabelas: o esquema de cada um fica no seu
 adaptador de repositório e é aplicado aqui, no ponto de composição.
-Ver ADR-010 (SQLite nesta sprint, PostgreSQL previsto para produção).
+Ver ADR-011 (SQLite nesta etapa, PostgreSQL previsto para produção).
 """
 from __future__ import annotations
 
